@@ -8,12 +8,10 @@ on:
 
 jobs:
   build:
-
-    runs-on: macos-latest
-
+    runs-on: macos-11.0
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
+    - name: Use latest Xcode
+      run: sudo xcode-select -s '/Applications/Xcode_13.0.app/Contents/Developer'
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild -scheme macOS UITesting -destination 'platform=macOS' test | xcpretty
