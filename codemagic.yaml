@@ -6,7 +6,7 @@ workflows:
           XCODE_PROJECT: "macOS UITesting.xcodeproj"
           XCODE_SCHEME: "macOS UITesting"
           BUNDLE_ID: "com.rudrankriyam.macOS-UITesting"
-        xcode: default
+        xcode: edge
         cocoapods: default
       triggering:
         events:
