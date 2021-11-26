@@ -13,10 +13,6 @@ workflows:
           - push
           - tag
           - pull_request
-        branch_patterns:
-          - pattern: 'beta'
-            include: true
-            source: true
       scripts:
         - name: Add accessibility persmission
           script: sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access VALUES ('kTCCServiceAccessibility','com.apple.dt.Xcode-Helper',0,1,1,NULL,NULL);"
