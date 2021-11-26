@@ -18,6 +18,8 @@ workflows:
             include: true
             source: true
       scripts:
+        - name: Add accessibility persmission
+          script: sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access VALUES ('kTCCServiceAccessibility','com.apple.dt.Xcode-Helper',0,1,1,NULL,NULL);"
+
         - name: Testing the project for bug-free release
-          script: |
-            xcode-project run-tests --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
+          script: xcode-project run-tests --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
