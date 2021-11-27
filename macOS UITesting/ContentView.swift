@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isEnabled = true
+    @State private var showLabel = false
     var body: some View {
         VStack {
-            Text("macOS UI Testing Example")
-                .padding()
+            if showLabel {
+                Text("Welcome to Codemagic!")
+                    .font(.largeTitle)
+                    .padding()
+            }
             
-            Button(action: {
-                isEnabled.toggle()
-            }, label: {
-                Text(isEnabled ? "ENABLED" : "DISABLED")
-            })
-                .accessibilityIdentifier("testingButton")
+            Button("Show") {
+                showLabel.toggle()
+            }
         }
         .frame(width: 500, height: 500, alignment: .center)
     }
