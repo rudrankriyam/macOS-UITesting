@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showLabel = false
-    var body: some View {
-        VStack {
-            if showLabel {
-                Text("Welcome to Codemagic!")
-                    .font(.largeTitle)
-                    .padding()
-            }
-            
-            Button("Show") {
-                showLabel.toggle()
-            }
-        }
-        .frame(width: 500, height: 500, alignment: .center)
+  @State private var showWelcomeLabel = false
+  
+  var body: some View {
+    VStack {
+      if showWelcomeLabel {
+        Text("Welcome to Codemagic!")
+          .font(.largeTitle)
+          .padding()
+      }
+      
+      Button("Show") {
+        showWelcomeLabel.toggle()
+      }
+      .accessibilityIdentifier("Show Button")
     }
+    .frame(width: 500, height: 500, alignment: .center)
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
