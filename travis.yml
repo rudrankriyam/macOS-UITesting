@@ -1,0 +1,4 @@
+language: swift
+osx_image: xcode13.1
+xcode_workspace: macOS UITesting.xcodeproj
+xcode_scheme: macOS UITesting
