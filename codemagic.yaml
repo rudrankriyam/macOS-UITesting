@@ -6,7 +6,7 @@ workflows:
           XCODE_PROJECT: "macOS UITesting.xcodeproj"
           XCODE_SCHEME: "macOS UITesting"
           BUNDLE_ID: "com.rudrankriyam.macOS-UITesting"
-        xcode: edge
+        xcode: latest
         cocoapods: default
       triggering:
         events:
@@ -14,11 +14,10 @@ workflows:
           - tag
           - pull_request
       scripts:
-        - name: Disable SIP
-          script: csrutil disable
-        - name: Addd 
-          script: csrutil status
-          
-          # sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "insert into access (service, client, client_type, allowed, prompt_count, indirect_object_identifier, flags) values ('kTCCServiceAccessibility', 'com.rudrankriyam.macOS-UITesting', 0, 1, 1, 'UNUSED', 0)"
-        - name: Testing the project for bug-free release
-          script: xcode-project run-tests --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
+        - name: Permission for macOS UI testing
+          script: sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" "INSERT INTO access VALUES ('kTCCServiceAccessibility','com.apple.dt.Xcode-Helper',0,1,1,NULL,NULL);"
+        - name: macOS tests
+          script: |
+            xcode-project run-tests \
+                --project "$XCODE_PROJECT" \
+                --scheme "$XCODE_SCHEME"
